@@ -1,0 +1,14 @@
+[package]
+name = "breakout_amethyst_sample"
+version = "0.1.0"
+authors = []
+edition = "2018"
+
+[dependencies]
+amethyst = "0.15.0"
+
+[features]
+default = ["metal"]
+empty = ["amethyst/empty"]
+metal = ["amethyst/metal"]
+vulkan = ["amethyst/vulkan"]
