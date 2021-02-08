@@ -7,3 +7,5 @@ thumbs.db
 *~
 *.rs.bk
 *.swp
+
+.idea
