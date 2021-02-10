@@ -1,4 +1,4 @@
 (
-  title: "breakout_amethyst_sample",
-  dimensions: Some((540, 1080)),
+  title: "ブロック崩し",
+  dimensions: Some((800, 960)),
 )
