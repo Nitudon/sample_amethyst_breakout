@@ -1,4 +1,4 @@
 (
   title: "breakout_amethyst_sample",
-  dimensions: Some((500, 500)),
+  dimensions: Some((540, 1080)),
 )
