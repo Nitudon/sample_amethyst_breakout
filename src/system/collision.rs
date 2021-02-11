@@ -8,7 +8,6 @@ use crate::component::{
     ball::Ball,
     bar::Bar,
     block::Block,
-    wall::Wall
 };
 use crate::resource::score::Score;
 

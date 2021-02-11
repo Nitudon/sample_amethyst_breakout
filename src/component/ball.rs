@@ -5,13 +5,13 @@ use amethyst::{
     renderer::SpriteRender,
 };
 
+use crate::component::*;
 use crate::util::sprite::*;
 use amethyst::core::math::Vector2;
 
-const BALL_HEIGHT: f32 = 40.0;
-const BALL_WIDTH: f32 = 40.0;
-const BALL_START_X: f32 = 0.0;
-const BALL_START_Y: f32 = 30.0;
+const BALL_HEIGHT: f32 = 16.0;
+const BALL_WIDTH: f32 = 16.0;
+const BALL_START_Y: f32 = 200.0;
 const BALL_BASE_SPEED_X: f32 = 2.0;
 const BALL_BASE_SPEED_Y: f32 = 1.0;
 
@@ -38,7 +38,7 @@ impl Ball {
     }
     
     pub fn set_speed_x_by_base_speed_coefficient(&mut self, coefficient: f32) {
-        self.speed = Vector2::new(BALL_BASE_SPEED_X * coefficient, self.speed.y);
+        self.speed = Vector2::new(SCREEN_WIDTH / 2.0 * coefficient, self.speed.y);
     }
 }
 
@@ -52,7 +52,7 @@ pub fn create_ball(world: &mut World) {
     let mut ball = Ball::new(speed, size);
     let mut sprite = create_ball_sprite(world);
     let mut transform = Transform::default();
-    transform.set_translation_xyz(BALL_START_X, BALL_START_Y, 1.0);
+    transform.set_translation_xyz(SCREEN_WIDTH / 2.0, BALL_START_Y, 0.0);
 
     world
         .create_entity()
@@ -63,5 +63,5 @@ pub fn create_ball(world: &mut World) {
 }
 
 fn create_ball_sprite(world: &mut World) -> SpriteRender {
-    create_sprite("texture/ball_spritesheet.png", "texture/ball_spritesheet.ron", 0, world)
+    create_sprite("texture/ball.png", "texture/ball_spritesheet.ron", 0, world)
 }
