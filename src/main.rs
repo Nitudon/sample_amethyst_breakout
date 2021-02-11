@@ -7,11 +7,13 @@ use amethyst::{
         RenderingBundle,
     },
     input::{InputBundle, StringBindings},
+    ui::{RenderUi, UiBundle},
     utils::application_root_dir,
 };
 
 extern crate breakout_amethyst_sample as breakout;
 use breakout::state::game::GameState;
+use breakout::bundle::GameBundle;
 
 fn main() -> amethyst::Result<()> {
     amethyst::start_logger(Default::default());
@@ -23,16 +25,19 @@ fn main() -> amethyst::Result<()> {
     let display_config_path = config_dir.join("display.ron");
 
     let game_data= GameDataBuilder::default()
+        .with_bundle(GameBundle)?
+        .with_bundle(TransformBundle::new())?
+        .with_bundle(InputBundle::<StringBindings>::new())?
+        .with_bundle(UiBundle::<StringBindings>::new())?
         .with_bundle(
             RenderingBundle::<DefaultBackend>::new()
                 .with_plugin(
                     RenderToWindow::from_config_path(display_config_path)?
                         .with_clear([0.97, 0.95, 0.898, 1.0]),
                 )
+                .with_plugin(RenderUi::default())
                 .with_plugin(RenderFlat2D::default()),
-        )?
-        .with_bundle(InputBundle::<StringBindings>::new())?
-        .with_bundle(TransformBundle::new())?;
+        )?;
 
     let mut game = Application::new(assets_dir, GameState, game_data)?;
     game.run();

@@ -18,11 +18,11 @@ pub const BLOCK_MARGIN_X : f32 = 144.0;
 pub const BLOCK_MARGIN_Y : f32 = 84.0;
 
 #[derive(Default)]
-pub struct GameState {
+pub struct StartState {
     pub score_text : Option<Entity>
 }
 
-impl SimpleState for GameState {
+impl SimpleState for StartState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
         let StateData { mut world, .. } = data;
     }
