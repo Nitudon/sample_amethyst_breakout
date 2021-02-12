@@ -11,8 +11,8 @@ use amethyst::core::math::Vector2;
 
 const BALL_HEIGHT: f32 = 16.0;
 const BALL_WIDTH: f32 = 16.0;
-const BALL_START_Y: f32 = 200.0;
-const BALL_BASE_SPEED_X: f32 = 2.0;
+const BALL_START_Y: f32 = 240.0;
+const BALL_BASE_SPEED_X: f32 = 1.5;
 const BALL_BASE_SPEED_Y: f32 = 1.0;
 
 #[derive(Clone)]
@@ -38,7 +38,7 @@ impl Ball {
     }
     
     pub fn set_speed_x_by_base_speed_coefficient(&mut self, coefficient: f32) {
-        self.speed = Vector2::new(SCREEN_WIDTH / 2.0 * coefficient, self.speed.y);
+        self.speed = Vector2::new(BALL_BASE_SPEED_X * coefficient, self.speed.y);
     }
 }
 
@@ -47,9 +47,9 @@ impl Component for Ball {
 }
 
 pub fn create_ball(world: &mut World) {
-    let speed = Vector2::new(BALL_BASE_SPEED_X, BALL_BASE_SPEED_Y);
+    let speed = Vector2::new(0.0, - BALL_BASE_SPEED_Y);
     let size = Vector2::new(BALL_WIDTH, BALL_HEIGHT);
-    let mut ball = Ball::new(speed, size);
+    let mut ball = Ball::new(size, speed);
     let mut sprite = create_ball_sprite(world);
     let mut transform = Transform::default();
     transform.set_translation_xyz(SCREEN_WIDTH / 2.0, BALL_START_Y, 0.0);

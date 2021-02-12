@@ -5,13 +5,11 @@ use amethyst::{
 };
 
 use crate::component::{
+    SCREEN_WIDTH,
     ball::Ball,
     bar::Bar,
 };
 use amethyst::core::math::clamp;
-
-pub const PLAYER_POSITION_X_MIN: f32 = 40.0;
-pub const PLAYER_POSITION_X_MAX: f32 = 920.0;
 
 pub struct TranslationSystem;
 
@@ -31,7 +29,7 @@ impl<'a> System<'a> for TranslationSystem {
 
         for (bar_transform, bar) in (&mut transforms, &bars).join() {
             // バーの移動
-            let position_x = clamp(bar_transform.translation().x + bar.speed, PLAYER_POSITION_X_MIN, PLAYER_POSITION_X_MAX);
+            let position_x = clamp(bar_transform.translation().x + bar.speed, bar.size.x * 0.5, SCREEN_WIDTH - bar.size.x * 0.5);
             bar_transform.set_translation_x(position_x);
         }
     }

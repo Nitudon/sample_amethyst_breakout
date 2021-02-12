@@ -8,12 +8,7 @@ use amethyst::{
     SimpleTrans, 
     Trans
 };
-use crate::component::{
-    ball::*,
-    block::*,
-    bar::*,
-    camera::*,
-};
+
 use crate::resource::score::*;
 
 #[derive(Default)]
@@ -22,15 +17,6 @@ pub struct GameState;
 impl SimpleState for GameState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
         let StateData { mut world, .. } = data;
-
-        let mut score = Score::new();
-        world.insert(score);
-        
-        create_camera(world);
-        
-        create_ball(world);
-        create_block_list(world);
-        create_bar(world);
     }
 
     /*

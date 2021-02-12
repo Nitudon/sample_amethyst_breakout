@@ -1,14 +1,23 @@
 use amethyst::{
     SimpleState, 
     StateData, 
-    GameData, 
-    core::ecs::WorldExt, 
+    GameData,
+    SimpleTrans,
+    Trans,
+    StateEvent,
+    core::ecs::{WorldExt, Entity}, 
+    input::*,
+    renderer::rendy::wsi::winit::MouseButton,
     ui::UiCreator, 
-    SimpleTrans, 
-    Trans
 };
-use crate::component::ball::*;
-use amethyst::core::ecs::Entity;
+use crate::component::{
+    ball::*,
+    block::*,
+    bar::*,
+    camera::*,
+};
+use crate::state::game::GameState;
+use crate::resource::score::Score;
 
 pub const BLOCK_COUNT_X : i32 = 4;
 pub const BLOCK_COUNT_Y : i32 = 5;
@@ -25,9 +34,23 @@ pub struct StartState {
 impl SimpleState for StartState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
         let StateData { mut world, .. } = data;
+
+        let mut score = Score::new();
+        world.insert(score);
+        
+        create_camera(world);
+        create_ball(world);
+        create_block_list(world);
+        create_bar(world);
     }
 
-    fn update(&mut self, state_data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
+    fn handle_event(&mut self, data: StateData<'_, GameData<'_, '_>>, event: StateEvent) -> SimpleTrans {
+        let StateData { mut world, .. } = data;
+        if let StateEvent::Window(event) = &event {
+            if is_mouse_button_down(&event, MouseButton::Left) {
+                return Trans::Switch(Box::new(GameState::default()))
+            }
+        }
         Trans::None
     }
 }

@@ -12,7 +12,7 @@ use amethyst::{
 };
 
 extern crate breakout_amethyst_sample as breakout;
-use breakout::state::game::GameState;
+use breakout::state::start::StartState;
 use breakout::bundle::GameBundle;
 
 fn main() -> amethyst::Result<()> {
@@ -35,11 +35,11 @@ fn main() -> amethyst::Result<()> {
                     RenderToWindow::from_config_path(display_config_path)?
                         .with_clear([0.97, 0.95, 0.898, 1.0]),
                 )
-                .with_plugin(RenderUi::default())
-                .with_plugin(RenderFlat2D::default()),
+                .with_plugin(RenderFlat2D::default())
+                .with_plugin(RenderUi::default()),
         )?;
 
-    let mut game = Application::new(assets_dir, GameState, game_data)?;
+    let mut game = Application::new(assets_dir, StartState::default(), game_data)?;
     game.run();
 
     Ok(())
