@@ -6,6 +6,7 @@ use amethyst::ui::{UiLabel, UiText};
 pub struct Score {
     pub score : i32,
     pub time : f32,
+    pub is_game : bool,
 }
 
 impl Score {
@@ -13,6 +14,7 @@ impl Score {
         Score {
             score : 0,
             time : 0.,
+            is_game : false,
         }
     }
     
@@ -30,6 +32,10 @@ impl Score {
 
     pub fn subtract_time(&mut self, time: f32) {
         self.time -= time;
+    }
+    
+    pub fn set_is_game(&mut self, is_game: bool) {
+        self.is_game = is_game;
     }
 }
 

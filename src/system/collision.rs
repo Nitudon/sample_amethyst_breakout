@@ -48,7 +48,7 @@ impl<'a> System<'a> for CollisionSystem {
 
                 let ball_position = Vector2::new(ball_transform.translation().x, ball_transform.translation().y);
                 let block_position = Vector2::new(block_transform.translation().x, block_transform.translation().y);
-                let hit_block = get_ball_stage_block_reflection(ball, &ball_position, &block_position, &block.size);
+                let hit_block = get_ball_reflection(ball, &ball_position, &block_position, &block.size);
                 match hit_block {
                     BallReflectDirection::X => ball.reverse_speed_x(),
                     BallReflectDirection::Y => ball.reverse_speed_y(),
@@ -68,7 +68,7 @@ enum BallReflectDirection {
     Y
 }
 
-fn get_ball_stage_block_reflection(ball: &Ball, ball_position: &Vector2<f32>, target_position: &Vector2<f32>, target_size: &Vector2<f32>) -> BallReflectDirection {
+fn get_ball_reflection(ball: &Ball, ball_position: &Vector2<f32>, target_position: &Vector2<f32>, target_size: &Vector2<f32>) -> BallReflectDirection {
     let ball_size = &ball.size;
 
     if is_range(ball_position.y, target_position.y, target_size.y) &&
