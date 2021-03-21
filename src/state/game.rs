@@ -11,6 +11,7 @@ use amethyst::{
 
 use crate::resource::score::*;
 use crate::state::start::StartState;
+use crate::state::result::ResultState;
 
 #[derive(Default)]
 pub struct GameState;
@@ -25,7 +26,7 @@ impl SimpleState for GameState {
         let StateData { world, .. } = state_data;
 
         if world.fetch::<Score>().is_game == false {
-            return Trans::Switch(Box::new(StartState::default()))
+            return Trans::Switch(Box::new(ResultState::default()))
         }
 
         Trans::None

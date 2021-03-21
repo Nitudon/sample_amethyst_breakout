@@ -1,0 +1,30 @@
+#![enable(implicit_some)]
+Container(
+	transform: (
+		id:"title_screen",
+		anchor:Middle,
+		stretch: XY( x_margin: 0., y_margin: 0., keep_aspect_ratio: false),
+		width: 960.,
+		height: 540.,
+	),
+	children:[
+		Label(
+			transform: (
+				id:"result_label",
+				anchor:Middle,
+				x:0.,
+				y:-320.,
+				height:80.,
+				width:960.,
+				scale_mode:Pixel,
+			),
+			text: (
+				text: "ゲームクリア",
+                font: File("font/VL-Gothic-Regular.ttf", ("TTF", ())),
+                font_size: 60.,
+                color: (0., 0., 0.0, 1.0),
+                align: Middle,
+			)
+		),
+	]	
+)

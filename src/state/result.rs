@@ -1,14 +1,14 @@
 use amethyst::{
-    SimpleState, 
-    StateData, 
+    SimpleState,
+    StateData,
     GameData,
     SimpleTrans,
     Trans,
     StateEvent,
-    core::ecs::{WorldExt, Entity}, 
+    core::ecs::{WorldExt, Entity},
     input::*,
     renderer::rendy::wsi::winit::MouseButton,
-    ui::UiCreator, 
+    ui::UiCreator,
 };
 use crate::component::{
     ball::*,
@@ -18,6 +18,7 @@ use crate::component::{
 };
 use crate::state::game::GameState;
 use crate::resource::score::Score;
+use crate::state::start::StartState;
 
 pub const BLOCK_COUNT_X : i32 = 4;
 pub const BLOCK_COUNT_Y : i32 = 5;
@@ -27,24 +28,23 @@ pub const BLOCK_MARGIN_X : f32 = 144.0;
 pub const BLOCK_MARGIN_Y : f32 = 84.0;
 
 #[derive(Default)]
-pub struct StartState {
-    pub title_ui : Option<Entity>
+pub struct ResultState {
+    pub result_ui : Option<Entity>
 }
 
-impl SimpleState for StartState {
+impl SimpleState for ResultState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
         let StateData { mut world, .. } = data;
 
-        let mut score = Score::new();
-        world.insert(score);
-        
-        create_camera(world);
-        create_ball(world);
-        create_block_list(world);
-        create_bar(world);
+        let block_count = world.fetch::<Score>().block_count;
 
         world.exec(|mut creator: UiCreator<'_>| {
-            self.title_ui = Some(creator.create("ui/title/screen.ron", ()));
+            if block_count > 0 {
+                self.result_ui = Some(creator.create("ui/result/game_over.ron", ()));
+                
+            } else {
+                self.result_ui = Some(creator.create("ui/result/clear.ron", ()));
+            }
         });
     }
 
@@ -52,11 +52,11 @@ impl SimpleState for StartState {
         let StateData { mut world, .. } = data;
         if let StateEvent::Window(event) = &event {
             if is_mouse_button_down(&event, MouseButton::Left) {
-                if self.title_ui.is_some() {
-                    world.entities().delete(self.title_ui.unwrap());
-                    self.title_ui = None;
+                if self.result_ui.is_some() {
+                    world.entities().delete(self.result_ui.unwrap());
+                    self.result_ui = None;
                 }
-                return Trans::Switch(Box::new(GameState::default()))
+                return Trans::Switch(Box::new(StartState::default()))
             }
         }
         Trans::None
