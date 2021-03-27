@@ -33,9 +33,9 @@ pub struct StartState {
 
 impl SimpleState for StartState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
-        let StateData { mut world, .. } = data;
+        let StateData { world, .. } = data;
 
-        let mut score = Score::new();
+        let score = Score::new();
         world.insert(score);
         
         create_camera(world);
@@ -49,12 +49,14 @@ impl SimpleState for StartState {
     }
 
     fn handle_event(&mut self, data: StateData<'_, GameData<'_, '_>>, event: StateEvent) -> SimpleTrans {
-        let StateData { mut world, .. } = data;
+        let StateData { world, .. } = data;
         if let StateEvent::Window(event) = &event {
             if is_mouse_button_down(&event, MouseButton::Left) {
                 if self.title_ui.is_some() {
-                    world.entities().delete(self.title_ui.unwrap());
-                    self.title_ui = None;
+                    match world.entities().delete(self.title_ui.unwrap()) {
+                        Ok(()) => self.title_ui = None,
+                        Err(err) => println!("delete wrong generation {:?}", err)
+                    }
                 }
                 return Trans::Switch(Box::new(GameState::default()))
             }

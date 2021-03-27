@@ -1,7 +1,3 @@
-use amethyst::ecs::prelude::*;
-use amethyst::core::math::Id;
-use amethyst::ui::{UiLabel, UiText};
-
 #[derive(Default)]
 pub struct Score {
     pub score : i32,
@@ -20,10 +16,6 @@ impl Score {
     
     pub fn add_score(&mut self, score: i32) {
         self.score += score;
-    }
-
-    pub fn subtract_score(&mut self, score: i32) {
-        self.score -= score;
     }
 
     pub fn add_block_count(&mut self, count: i32) {

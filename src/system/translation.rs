@@ -1,6 +1,5 @@
 use amethyst::{
     core::Transform,
-    core::math::Vector2,
     core::ecs::{Join, System, WriteExpect, WriteStorage, ReadStorage},
 };
 

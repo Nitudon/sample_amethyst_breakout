@@ -52,8 +52,8 @@ impl Component for Ball {
 
 pub fn create_ball(world: &mut World) {
     let size = Vector2::new(BALL_WIDTH, BALL_HEIGHT);
-    let mut ball = Ball::new(size);
-    let mut sprite = create_ball_sprite(world);
+    let ball = Ball::new(size);
+    let sprite = create_ball_sprite(world);
     let mut transform = Transform::default();
     transform.set_translation_xyz(SCREEN_WIDTH / 2.0, BALL_START_Y, 0.0);
 

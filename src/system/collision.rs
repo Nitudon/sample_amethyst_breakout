@@ -1,7 +1,7 @@
 use amethyst::{
     core::Transform,
     core::math::Vector2,
-    core::ecs::{Join, System, WriteStorage, WriteExpect, ReadStorage, Entities, Entity},
+    core::ecs::{Join, System, WriteStorage, WriteExpect, ReadStorage, Entities},
 };
 
 use crate::component::{ball::Ball, bar::Bar, block::Block, SCREEN_WIDTH, SCREEN_HEIGHT};
@@ -51,12 +51,16 @@ impl<'a> System<'a> for CollisionSystem {
                     _ => continue
                 }
 
-                score.add_score(block.score);
-                score.subtract_block_count(1);
-                entities.delete(entity);
-                if score.block_count == 0 {
-                    // クリア
-                    score.set_is_game(false);
+                match entities.delete(entity) {
+                    Ok(()) => {
+                        score.add_score(block.score);
+                        score.subtract_block_count(1);
+                        if score.block_count == 0 {
+                            // クリア
+                            score.set_is_game(false);
+                        }
+                    },
+                    Err(err) => println!("delete wrong generation {:?}", err)
                 }
             }
         }

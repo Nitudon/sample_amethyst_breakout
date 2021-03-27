@@ -1,8 +1,7 @@
 use amethyst::{
     core::transform::Transform,
     prelude::*,
-    renderer::{Camera, SpriteRender},
-    core::math::Vector3,
+    renderer::Camera,
 };
 use crate::component::*;
 

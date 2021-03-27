@@ -8,7 +8,6 @@ use amethyst::{
 
 use crate::component::*;
 use crate::util::sprite::*;
-use amethyst::core::math::Vector3;
 
 const BAR_HEIGHT: f32 = 16.0;
 const BAR_WIDTH: f32 = 96.0;
@@ -50,8 +49,8 @@ impl Component for Bar {
 
 pub fn create_bar(world: &mut World) {
     let size = Vector2::new(BAR_WIDTH, BAR_HEIGHT);
-    let mut bar = Bar::new(size);
-    let mut sprite = create_bar_sprite(world);
+    let bar = Bar::new(size);
+    let sprite = create_bar_sprite(world);
     let mut transform = Transform::default();
     transform.set_translation_xyz(SCREEN_WIDTH * 0.5, BAR_START_Y, 0.0);
     

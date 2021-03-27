@@ -65,13 +65,8 @@ pub fn create_block_list(world: &mut World) {
 
 fn create_block(position: (f32, f32), block_type: &BlockType, world: &mut World) {
     let size = Vector2::new(BLOCK_WIDTH, BLOCK_HEIGHT);
-    let score = match block_type {
-        Green => 100,
-        Orange => 200, 
-        Red => 300
-    };
-    let mut block = Block::new(size, score);
-    let mut sprite = create_block_sprite(block_type, world);
+    let block = Block::new(size, score);
+    let sprite = create_block_sprite(block_type, world);
     let mut transform = Transform::default();
     transform.set_translation_xyz(position.0, position.1, 0.0);
 

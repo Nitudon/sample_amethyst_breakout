@@ -1,7 +1,5 @@
 use amethyst::{
-    core::Transform,
-    core::math::Vector2,
-    core::ecs::{Join, System, WriteStorage, WriteExpect, ReadStorage, ReadExpect},
+    core::ecs::{System, WriteStorage, ReadExpect},
     input::{InputHandler, StringBindings, VirtualKeyCode},
 };
 
@@ -9,9 +7,6 @@ use crate::component::bar::*;
 use crate::resource::score::Score;
 
 pub struct PlayerSystem;
-
-pub const PLAYER_POSITION_X_MIN: f32 = 40.0;
-pub const PLAYER_POSITION_X_MAX: f32 = 920.0;
 
 impl<'a> System<'a> for PlayerSystem {
     type SystemData = (

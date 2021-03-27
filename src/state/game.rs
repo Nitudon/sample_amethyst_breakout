@@ -2,15 +2,12 @@ use amethyst::{
     SimpleState, 
     StateData, 
     GameData, 
-    core::ecs::{Entity, WorldExt},
-    core::math::Vector2,
-    ui::{UiCreator, UiText, UiFinder}, 
+    core::ecs::WorldExt,
     SimpleTrans, 
     Trans
 };
 
 use crate::resource::score::*;
-use crate::state::start::StartState;
 use crate::state::result::ResultState;
 use crate::component::ball::Ball;
 use crate::component::bar::{Bar, MoveDirection};
@@ -21,7 +18,7 @@ pub struct GameState;
 
 impl SimpleState for GameState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
-        let StateData { mut world, .. } = data;
+        let StateData { world, .. } = data;
         let mut score = world.fetch_mut::<Score>();
         score.set_is_game(true);
         score.add_block_count(get_start_block_count());

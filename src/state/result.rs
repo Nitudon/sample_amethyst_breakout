@@ -10,13 +10,6 @@ use amethyst::{
     renderer::rendy::wsi::winit::MouseButton,
     ui::UiCreator,
 };
-use crate::component::{
-    ball::*,
-    block::*,
-    bar::*,
-    camera::*,
-};
-use crate::state::game::GameState;
 use crate::resource::score::Score;
 use crate::state::start::StartState;
 
@@ -34,7 +27,7 @@ pub struct ResultState {
 
 impl SimpleState for ResultState {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
-        let StateData { mut world, .. } = data;
+        let StateData { world, .. } = data;
 
         let block_count = world.fetch::<Score>().block_count;
 
@@ -49,17 +42,19 @@ impl SimpleState for ResultState {
     }
     
     fn on_stop(&mut self, data: StateData<'_, GameData<'_, '_>>) {
-        let StateData { mut world, .. } = data;
+        let StateData { world, .. } = data;
         world.delete_all();
     }
 
     fn handle_event(&mut self, data: StateData<'_, GameData<'_, '_>>, event: StateEvent) -> SimpleTrans {
-        let StateData { mut world, .. } = data;
+        let StateData { world, .. } = data;
         if let StateEvent::Window(event) = &event {
             if is_mouse_button_down(&event, MouseButton::Left) {
                 if self.result_ui.is_some() {
-                    world.entities().delete(self.result_ui.unwrap());
-                    self.result_ui = None;
+                    match world.entities().delete(self.result_ui.unwrap()) {
+                        Ok(()) => self.result_ui = None,
+                        Err(err) => println!("delete wrong generation {:?}", err)
+                    }
                 }
                 return Trans::Switch(Box::new(StartState::default()))
             }
