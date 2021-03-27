@@ -16,6 +16,7 @@ pub const BLOCK_START_X : f32 = 16.0;
 pub const BLOCK_START_Y : f32 = 360.0;
 pub const BLOCK_MARGIN_X : f32 = 16.0;
 pub const BLOCK_MARGIN_Y : f32 = 16.0;
+pub const BLOCK_SCORE : i32 = 100;
 
 pub enum BlockType
 {
@@ -31,10 +32,10 @@ pub struct Block {
 }
 
 impl Block {
-    fn new(size: Vector2<f32>, score : i32) -> Block {
+    fn new(size: Vector2<f32>) -> Block {
         Block {
             size,
-            score,
+            score: BLOCK_SCORE,
         }
     }
 }
@@ -65,7 +66,7 @@ pub fn create_block_list(world: &mut World) {
 
 fn create_block(position: (f32, f32), block_type: &BlockType, world: &mut World) {
     let size = Vector2::new(BLOCK_WIDTH, BLOCK_HEIGHT);
-    let block = Block::new(size, score);
+    let block = Block::new(size);
     let sprite = create_block_sprite(block_type, world);
     let mut transform = Transform::default();
     transform.set_translation_xyz(position.0, position.1, 0.0);
