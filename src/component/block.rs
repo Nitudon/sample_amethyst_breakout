@@ -43,6 +43,10 @@ impl Component for Block {
     type Storage = DenseVecStorage<Self>;
 }
 
+pub fn get_start_block_count() -> i32 {
+    BLOCK_COUNT_X * BLOCK_COUNT_Y
+}
+
 pub fn create_block_list(world: &mut World) {
     for x in 0..BLOCK_COUNT_X {
         for y in 0..BLOCK_COUNT_Y {

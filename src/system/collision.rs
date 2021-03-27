@@ -42,10 +42,6 @@ impl<'a> System<'a> for CollisionSystem {
             
             // ブロックの当たり判定
             for (block_transform, block, entity) in (&transforms, &blocks, &*entities).join() {
-                if entity.gen().id() > 1 {
-                    continue;
-                }
-
                 let ball_position = Vector2::new(ball_transform.translation().x, ball_transform.translation().y);
                 let block_position = Vector2::new(block_transform.translation().x, block_transform.translation().y);
                 let hit_block = get_ball_reflection(ball, &ball_position, &block_position, &block.size);
@@ -56,7 +52,12 @@ impl<'a> System<'a> for CollisionSystem {
                 }
 
                 score.add_score(block.score);
+                score.subtract_block_count(1);
                 entities.delete(entity);
+                if score.block_count == 0 {
+                    // クリア
+                    score.set_is_game(false);
+                }
             }
         }
     }

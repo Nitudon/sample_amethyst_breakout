@@ -47,6 +47,11 @@ impl SimpleState for ResultState {
             }
         });
     }
+    
+    fn on_stop(&mut self, data: StateData<'_, GameData<'_, '_>>) {
+        let StateData { mut world, .. } = data;
+        world.delete_all();
+    }
 
     fn handle_event(&mut self, data: StateData<'_, GameData<'_, '_>>, event: StateEvent) -> SimpleTrans {
         let StateData { mut world, .. } = data;
