@@ -9,11 +9,11 @@ use crate::component::*;
 use crate::util::sprite::*;
 use amethyst::core::math::Vector2;
 
-const BALL_HEIGHT: f32 = 16.0;
-const BALL_WIDTH: f32 = 16.0;
+const BALL_HEIGHT: f32 = 8.0;
+const BALL_WIDTH: f32 = 8.0;
 const BALL_START_Y: f32 = 240.0;
-const BALL_BASE_SPEED_X: f32 = 7.0;
-const BALL_BASE_SPEED_Y: f32 = 3.0;
+const BALL_BASE_SPEED_X: f32 = 9.0;
+const BALL_BASE_SPEED_Y: f32 = 4.5;
 
 #[derive(Clone)]
 pub struct Ball {
