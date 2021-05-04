@@ -22,6 +22,7 @@ impl<'a> System<'a> for TranslationSystem {
     );
 
     fn run(&mut self, (mut score, mut transforms, balls, bars): Self::SystemData) {
+        
         for (ball_transform, ball) in (&mut transforms, &balls).join() {
             // ボールの移動
             ball_transform.set_translation_x(ball_transform.translation().x + ball.speed.x);
