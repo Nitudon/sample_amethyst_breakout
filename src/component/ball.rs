@@ -13,7 +13,7 @@ const BALL_HEIGHT: f32 = 8.0;
 const BALL_WIDTH: f32 = 8.0;
 const BALL_START_Y: f32 = 240.0;
 const BALL_BASE_SPEED_X: f32 = 9.0;
-const BALL_BASE_SPEED_Y: f32 = 4.5;
+const BALL_BASE_SPEED_Y: f32 = 3.0;
 
 #[derive(Clone)]
 pub struct Ball {
@@ -55,7 +55,7 @@ pub fn create_ball(world: &mut World) {
     let ball = Ball::new(size);
     let sprite = create_ball_sprite(world);
     let mut transform = Transform::default();
-    transform.set_translation_xyz(SCREEN_WIDTH / 2.0, BALL_START_Y, 0.0);
+    transform.set_translation_xyz(AREA_WIDTH / 2.0, BALL_START_Y, 0.0);
 
     world
         .create_entity()

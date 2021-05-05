@@ -10,12 +10,12 @@ use crate::util::sprite::*;
 
 const BLOCK_HEIGHT: f32 = 32.0;
 const BLOCK_WIDTH: f32 = 96.0;
-pub const BLOCK_COUNT_X : i32 = 7;
-pub const BLOCK_COUNT_Y : i32 = 9;
-pub const BLOCK_START_X : f32 = 16.0;
-pub const BLOCK_START_Y : f32 = 360.0;
-pub const BLOCK_MARGIN_X : f32 = 16.0;
-pub const BLOCK_MARGIN_Y : f32 = 16.0;
+pub const BLOCK_COUNT_X : i32 = 4;
+pub const BLOCK_COUNT_Y : i32 = 4;
+pub const BLOCK_START_X : f32 = 18.0;
+pub const BLOCK_START_Y : f32 = 350.0;
+pub const BLOCK_MARGIN_X : f32 = 20.0;
+pub const BLOCK_MARGIN_Y : f32 = 20.0;
 pub const BLOCK_SCORE : i32 = 100;
 
 pub enum BlockType

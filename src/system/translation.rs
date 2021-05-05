@@ -5,7 +5,7 @@ use amethyst::{
 
 use crate::resource::score::Score;
 use crate::component::{
-    SCREEN_WIDTH,
+    AREA_WIDTH,
     ball::Ball,
     bar::Bar,
 };
@@ -35,7 +35,7 @@ impl<'a> System<'a> for TranslationSystem {
 
         for (bar_transform, bar) in (&mut transforms, &bars).join() {
             // バーの移動
-            let position_x = clamp(bar_transform.translation().x + bar.speed, bar.size.x * 0.5, SCREEN_WIDTH - bar.size.x * 0.5);
+            let position_x = clamp(bar_transform.translation().x + bar.speed, bar.size.x * 0.5, AREA_WIDTH - bar.size.x * 0.5);
             bar_transform.set_translation_x(position_x);
         }
     }

@@ -3,5 +3,5 @@ pub mod bar;
 pub mod block;
 pub mod camera;
 
-pub const SCREEN_HEIGHT: f32 = 800.0;
-pub const SCREEN_WIDTH: f32 = 800.0;
+pub const AREA_WIDTH: f32 = 480.0;
+pub const AREA_HEIGHT: f32 = 600.0;

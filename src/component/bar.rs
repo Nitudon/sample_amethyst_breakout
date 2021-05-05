@@ -52,7 +52,7 @@ pub fn create_bar(world: &mut World) {
     let bar = Bar::new(size);
     let sprite = create_bar_sprite(world);
     let mut transform = Transform::default();
-    transform.set_translation_xyz(SCREEN_WIDTH * 0.5, BAR_START_Y, 0.0);
+    transform.set_translation_xyz(AREA_WIDTH * 0.5, BAR_START_Y, 0.0);
     
     world
         .create_entity()

@@ -4,7 +4,7 @@ use amethyst::{
     core::ecs::{Join, System, WriteStorage, WriteExpect, ReadStorage, Entities},
 };
 
-use crate::component::{ball::Ball, bar::Bar, block::Block, SCREEN_WIDTH, SCREEN_HEIGHT};
+use crate::component::{ball::Ball, bar::Bar, block::Block, AREA_WIDTH, AREA_HEIGHT};
 use crate::resource::score::Score;
 
 pub struct CollisionSystem;
@@ -27,10 +27,10 @@ impl<'a> System<'a> for CollisionSystem {
 
         for (ball_transform, ball) in (&transforms, &mut balls).join() {
             // 壁の当たり判定、単純に画面の縁を壁に見立ててはみ出そうとしたら速度を反転
-            if ball_transform.translation().x - ball.size.x * 0.5 <= 0. || ball_transform.translation().x + ball.size.x * 0.5 >= SCREEN_WIDTH{
+            if ball_transform.translation().x - ball.size.x * 0.5 <= 0. || ball_transform.translation().x + ball.size.x * 0.5 >= AREA_WIDTH{
                 ball.reverse_speed_x();
             }
-            if ball_transform.translation().y + ball.size.y * 0.5 >= SCREEN_HEIGHT{
+            if ball_transform.translation().y + ball.size.y * 0.5 >= AREA_HEIGHT{
                 ball.reverse_speed_y();
             }
             
