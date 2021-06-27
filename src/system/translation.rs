@@ -3,9 +3,8 @@ use amethyst::{
     core::ecs::{Join, System, WriteExpect, WriteStorage, ReadStorage},
 };
 
-use crate::resource::score::Score;
+use crate::resource::rule::Rule;
 use crate::component::{
-    AREA_WIDTH,
     ball::Ball,
     bar::Bar,
 };
@@ -15,27 +14,26 @@ pub struct TranslationSystem;
 
 impl<'a> System<'a> for TranslationSystem {
     type SystemData = (
-        WriteExpect<'a, Score>,
+        WriteExpect<'a, Rule>,
         WriteStorage<'a, Transform>,
         ReadStorage<'a, Ball>,
         ReadStorage<'a, Bar>,
     );
 
-    fn run(&mut self, (mut score, mut transforms, balls, bars): Self::SystemData) {
-        
+    fn run(&mut self, (mut rule, mut transforms, balls, bars): Self::SystemData) {
         for (ball_transform, ball) in (&mut transforms, &balls).join() {
             // ボールの移動
             ball_transform.set_translation_x(ball_transform.translation().x + ball.speed.x);
             ball_transform.set_translation_y(ball_transform.translation().y + ball.speed.y);
             
             if ball_transform.translation().y < 0. {
-                score.set_is_game(false);
+                rule.set_is_game(false);
             }
         }
 
         for (bar_transform, bar) in (&mut transforms, &bars).join() {
             // バーの移動
-            let position_x = clamp(bar_transform.translation().x + bar.speed, bar.size.x * 0.5, AREA_WIDTH - bar.size.x * 0.5);
+            let position_x = clamp(bar_transform.translation().x + bar.speed, bar.size.x * 0.5, 480.0 - bar.size.x * 0.5);
             bar_transform.set_translation_x(position_x);
         }
     }

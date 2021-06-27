@@ -6,7 +6,7 @@ use amethyst::{
     renderer::SpriteRender,
 };
 
-use crate::util::sprite::*;
+use crate::component::sprite::create_sprite;
 
 const BLOCK_HEIGHT: f32 = 32.0;
 const BLOCK_WIDTH: f32 = 96.0;
@@ -44,19 +44,15 @@ impl Component for Block {
     type Storage = DenseVecStorage<Self>;
 }
 
-pub fn get_start_block_count() -> i32 {
-    BLOCK_COUNT_X * BLOCK_COUNT_Y
-}
-
 pub fn create_block_list(world: &mut World) {
     for x in 0..BLOCK_COUNT_X {
         for y in 0..BLOCK_COUNT_Y {
             let position_x = BLOCK_WIDTH * 0.5 + BLOCK_START_X + (x as f32) * (BLOCK_WIDTH + BLOCK_MARGIN_X);
             let position_y = BLOCK_START_Y + (y as f32) * (BLOCK_HEIGHT + BLOCK_MARGIN_Y);
-            let block_type = &match (x + y * BLOCK_COUNT_X) % 4 {
-                0 | 2 => BlockType::Green,
+            let block_type = &match y {
+                0 => BlockType::Green,
                 1 => BlockType::Orange,
-                3 => BlockType::Red,
+                2 => BlockType::Red,
                 _ => BlockType::Green,
             };
             create_block((position_x, position_y), block_type, world);

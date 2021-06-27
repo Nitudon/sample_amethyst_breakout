@@ -1,1 +1,1 @@
-pub mod score;
+pub mod rule;

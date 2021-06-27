@@ -3,12 +3,11 @@ use amethyst::{
     prelude::*,
     renderer::Camera,
 };
-use crate::component::*;
 
 pub fn create_camera(world: &mut World) {
     let mut camera_transform = Transform::default();
-    let camera_component = Camera::standard_2d(AREA_WIDTH, AREA_HEIGHT);
-    camera_transform.set_translation_xyz(AREA_WIDTH * 0.5, AREA_HEIGHT * 0.5, 1.0);
+    let camera_component = Camera::standard_2d(480.0, 600.0);
+    camera_transform.set_translation_xyz(240.0, 300.0, 1.0);
 
     world
         .create_entity()

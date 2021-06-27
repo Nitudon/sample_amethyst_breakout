@@ -1,6 +1,6 @@
 use amethyst::{
     Result,
-    core::bundle::{SystemBundle},
+    core::bundle::SystemBundle,
     ecs::DispatcherBuilder,
     prelude::World
 };

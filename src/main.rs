@@ -7,7 +7,6 @@ use amethyst::{
         RenderingBundle,
     },
     input::{InputBundle, StringBindings},
-    ui::{RenderUi, UiBundle},
     utils::application_root_dir,
 };
 
@@ -28,7 +27,6 @@ fn main() -> amethyst::Result<()> {
         .with_bundle(GameBundle)?
         .with_bundle(TransformBundle::new())?
         .with_bundle(InputBundle::<StringBindings>::new())?
-        .with_bundle(UiBundle::<StringBindings>::new())?
         .with_bundle(
             RenderingBundle::<DefaultBackend>::new()
                 .with_plugin(
@@ -36,7 +34,6 @@ fn main() -> amethyst::Result<()> {
                         .with_clear([0.97, 0.95, 0.898, 1.0]),
                 )
                 .with_plugin(RenderFlat2D::default())
-                .with_plugin(RenderUi::default()),
         )?;
 
     let mut game = Application::new(assets_dir, StartState::default(), game_data)?;

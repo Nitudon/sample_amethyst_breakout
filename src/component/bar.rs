@@ -6,12 +6,12 @@ use amethyst::{
     renderer::SpriteRender,
 };
 
-use crate::component::*;
-use crate::util::sprite::*;
+use crate::component::sprite::create_sprite;
 
 const BAR_HEIGHT: f32 = 16.0;
 const BAR_WIDTH: f32 = 96.0;
 const BAR_SPEED: f32 = 4.5;
+const BAR_START_X: f32 = 240.0;
 const BAR_START_Y: f32 = 60.0;
 
 pub enum MoveDirection {
@@ -52,7 +52,7 @@ pub fn create_bar(world: &mut World) {
     let bar = Bar::new(size);
     let sprite = create_bar_sprite(world);
     let mut transform = Transform::default();
-    transform.set_translation_xyz(AREA_WIDTH * 0.5, BAR_START_Y, 0.0);
+    transform.set_translation_xyz(BAR_START_X, BAR_START_Y, 0.0);
     
     world
         .create_entity()

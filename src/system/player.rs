@@ -4,7 +4,7 @@ use amethyst::{
 };
 
 use crate::component::bar::*;
-use crate::resource::score::Score;
+use crate::resource::rule::Rule;
 
 pub struct PlayerSystem;
 
@@ -12,11 +12,11 @@ impl<'a> System<'a> for PlayerSystem {
     type SystemData = (
         WriteStorage<'a, Bar>,
         ReadExpect<'a, InputHandler<StringBindings>>,
-        ReadExpect<'a, Score>,
+        ReadExpect<'a, Rule>,
     );
 
-    fn run(&mut self, (mut bars, input, score): Self::SystemData) {
-        if score.is_game == false {
+    fn run(&mut self, (mut bars, input, rule): Self::SystemData) {
+        if rule.is_game == false {
             return
         }
         
