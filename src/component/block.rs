@@ -10,13 +10,12 @@ use crate::component::sprite::create_sprite;
 
 const BLOCK_HEIGHT: f32 = 32.0;
 const BLOCK_WIDTH: f32 = 96.0;
-pub const BLOCK_COUNT_X : i32 = 4;
-pub const BLOCK_COUNT_Y : i32 = 4;
-pub const BLOCK_START_X : f32 = 18.0;
-pub const BLOCK_START_Y : f32 = 350.0;
-pub const BLOCK_MARGIN_X : f32 = 20.0;
-pub const BLOCK_MARGIN_Y : f32 = 20.0;
-pub const BLOCK_SCORE : i32 = 100;
+const BLOCK_COUNT_X : i32 = 4;
+const BLOCK_COUNT_Y : i32 = 4;
+const BLOCK_START_X : f32 = 18.0;
+const BLOCK_START_Y : f32 = 350.0;
+const BLOCK_MARGIN_X : f32 = 20.0;
+const BLOCK_MARGIN_Y : f32 = 20.0;
 
 pub enum BlockType
 {
@@ -28,14 +27,12 @@ pub enum BlockType
 #[derive(Clone)]
 pub struct Block {
     pub size: Vector2<f32>,
-    pub score: i32,
 }
 
 impl Block {
     fn new(size: Vector2<f32>) -> Block {
         Block {
             size,
-            score: BLOCK_SCORE,
         }
     }
 }

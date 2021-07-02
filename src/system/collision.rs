@@ -10,8 +10,6 @@ use crate::component::{
     block::Block, 
 };
 use crate::resource::rule::Rule;
-use amethyst::core::math::DimSub;
-use amethyst::renderer::rendy::wsi::winit::VirtualKeyCode::E;
 use amethyst::core::num::abs;
 
 pub struct CollisionSystem;
