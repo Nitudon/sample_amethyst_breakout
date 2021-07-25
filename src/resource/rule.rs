@@ -11,7 +11,7 @@ impl Rule {
             is_game : false,
         }
     }
-    
+
     pub fn set_is_game(&mut self, is_game: bool) {
         self.is_game = is_game;
     }

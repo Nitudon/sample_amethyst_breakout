@@ -8,6 +8,7 @@ use amethyst::{
 
 use crate::component::sprite::create_sprite;
 
+// 適当なバーのサイズと位置と速度
 const BAR_HEIGHT: f32 = 16.0;
 const BAR_WIDTH: f32 = 96.0;
 const BAR_SPEED: f32 = 4.5;
@@ -33,9 +34,9 @@ impl Bar {
             speed: 0.0
         }
     }
-    
+
     pub fn set_speed(&mut self, dir: MoveDirection) {
-        self.speed = match dir { 
+        self.speed = match dir {
             MoveDirection::None => 0.0,
             MoveDirection::Left => - BAR_SPEED,
             MoveDirection::Right => BAR_SPEED
@@ -53,7 +54,7 @@ pub fn create_bar(world: &mut World) {
     let sprite = create_bar_sprite(world);
     let mut transform = Transform::default();
     transform.set_translation_xyz(BAR_START_X, BAR_START_Y, 0.0);
-    
+
     world
         .create_entity()
         .with(bar)

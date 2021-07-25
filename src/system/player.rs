@@ -10,8 +10,11 @@ pub struct PlayerSystem;
 
 impl<'a> System<'a> for PlayerSystem {
     type SystemData = (
+        // バーの参照
         WriteStorage<'a, Bar>,
+        // キーボードの入力の参照
         ReadExpect<'a, InputHandler<StringBindings>>,
+        // ゲーム中かどうかの参照
         ReadExpect<'a, Rule>,
     );
 
@@ -19,7 +22,7 @@ impl<'a> System<'a> for PlayerSystem {
         if rule.is_game == false {
             return
         }
-        
+
         for bar in bars.as_mut_slice() {
             if input.key_is_down(VirtualKeyCode::Right) {
                 bar.set_speed(MoveDirection::Right);

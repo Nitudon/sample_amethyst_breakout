@@ -54,7 +54,7 @@ pub fn create_block_list(world: &mut World) {
             };
             create_block((position_x, position_y), block_type, world);
         }
-    } 
+    }
 }
 
 fn create_block(position: (f32, f32), block_type: &BlockType, world: &mut World) {
@@ -63,7 +63,7 @@ fn create_block(position: (f32, f32), block_type: &BlockType, world: &mut World)
     let sprite = create_block_sprite(block_type, world);
     let mut transform = Transform::default();
     transform.set_translation_xyz(position.0, position.1, 0.0);
-
+    
     world
         .create_entity()
         .with(block)

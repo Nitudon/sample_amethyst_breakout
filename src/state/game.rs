@@ -2,7 +2,7 @@ use amethyst::{
     SimpleState,
     StateData,
     GameData,
-    core::ecs::{WorldExt, Entity},
+    core::ecs::WorldExt,
     SimpleTrans,
     Trans,
 };
@@ -10,7 +10,7 @@ use amethyst::{
 use crate::state::result::ResultState;
 use crate::component::{
     block::Block,
-    ball::Ball,
+    ball::Ball,     
     bar::{Bar, MoveDirection},
 };
 use crate::resource::rule::*;
@@ -31,13 +31,13 @@ impl SimpleState for GameState {
         let mut balls = world.write_component::<Ball>();{
             for ball in balls.as_mut_slice() {
                 ball.initialize_speed();
-            }
+            } 
         }
     }
 
     fn update(&mut self, state_data: &mut StateData<'_, GameData<'_, '_>>) -> SimpleTrans {
         let StateData { world, .. } = state_data;
-
+        
         // ブロックがなくなった（クリアした）らゲーム中フラグをfalseに
         if world.read_component::<Block>().is_empty() {
             world.fetch_mut::<Rule>().set_is_game(false);
@@ -49,7 +49,7 @@ impl SimpleState for GameState {
             let mut bar_storage = world.write_component::<Bar>();{
                 for bar in bar_storage.as_mut_slice() {
                     bar.set_speed(MoveDirection::None);
-                }
+                } 
             }
             // ボールの動きを止める
             let mut ball_storage = world.write_component::<Ball>();{
@@ -60,7 +60,7 @@ impl SimpleState for GameState {
             // ResultStateへの遷移   
             return Trans::Switch(Box::new(ResultState::default()))
         }
-
+        
         Trans::None
     }
 }

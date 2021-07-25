@@ -1,6 +1,6 @@
 use amethyst::{
-    SimpleState, 
-    StateData, 
+    SimpleState,
+    StateData,
     GameData,
     SimpleTrans,
     Trans,
@@ -8,13 +8,14 @@ use amethyst::{
     input::*,
     renderer::rendy::wsi::winit::MouseButton,
 };
-use crate::component::{
-    ball::*,
-    block::*,
-    bar::*,
-    camera::*
-};
+
 use crate::state::game::GameState;
+use crate::component::{
+    camera::*,
+    block::*,
+    ball::*,
+    bar::*
+};
 use crate::resource::rule::*;
 
 #[derive(Default)]

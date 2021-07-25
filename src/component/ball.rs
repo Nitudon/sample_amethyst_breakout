@@ -27,11 +27,11 @@ impl Ball {
             speed: Vector2::new(0., 0.)
         }
     }
-    
+
     pub fn initialize_speed(&mut self) {
-        self.speed = Vector2::new(0.0, - BALL_BASE_SPEED_Y); 
+        self.speed = Vector2::new(0.0, - BALL_BASE_SPEED_Y);
     }
-    
+
     pub fn reverse_speed_x(&mut self) {
         self.speed = Vector2::new(- self.speed.x, self.speed.y);
     }
@@ -39,11 +39,11 @@ impl Ball {
     pub fn reverse_speed_y(&mut self) {
         self.speed = Vector2::new(self.speed.x, - self.speed.y);
     }
-    
+
     pub fn set_speed_x(&mut self, speed: f32) {
         self.speed = Vector2::new(speed, self.speed.y);
     }
-    
+
     pub fn stop(&mut self) {
         self.speed = Vector2::new(0., 0.);
     }

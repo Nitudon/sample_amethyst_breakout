@@ -3,7 +3,6 @@ use amethyst::{
     prelude::*,
     renderer::Camera,
 };
-use crate::component::*;
 
 // カメラの初期化
 pub fn create_camera(world: &mut World) {

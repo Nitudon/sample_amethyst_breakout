@@ -29,6 +29,7 @@ impl<'a> System<'a> for TranslationSystem {
             // ボールの移動
             ball_transform.set_translation_x(ball_transform.translation().x + ball.speed.x);
             ball_transform.set_translation_y(ball_transform.translation().y + ball.speed.y);
+
             if ball_transform.translation().y < 0. {
                 rule.set_is_game(false);
             }

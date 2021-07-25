@@ -5,7 +5,7 @@ use amethyst::{
     renderer::{SpriteSheet, SpriteRender, ImageFormat, Texture, SpriteSheetFormat},
 };
 
-// スプライトの作成
+// SpriteRendererを返す
 pub fn create_sprite(asset_name: &str, setting_name: &str, number: usize, world: &mut World) -> SpriteRender {
     let sprite_sheet = load_sprite_sheet(asset_name, setting_name, world);
 
@@ -15,8 +15,9 @@ pub fn create_sprite(asset_name: &str, setting_name: &str, number: usize, world:
     }
 }
 
-// アトラスの読み込み
+// Handle<SpriteSheet>を返す
 fn load_sprite_sheet(asset_name: &str, setting_name: &str, world: &mut World) -> Handle<SpriteSheet> {
+    // Handle<Texture>を返す
     let texture_handle : Handle<Texture> = {
         let loader = world.read_resource::<Loader>();
         let texture_storage = world.read_resource::<AssetStorage<Texture>>();
@@ -28,6 +29,7 @@ fn load_sprite_sheet(asset_name: &str, setting_name: &str, world: &mut World) ->
         )
     };
 
+    // Handle<SpriteSheet>を返す
     let loader = world.read_resource::<Loader>();
     let sprite_sheet_store = world.read_resource::<AssetStorage<SpriteSheet>>();
     loader.load(

@@ -5,9 +5,9 @@ use amethyst::{
 };
 
 use crate::component::{
-    ball::*, 
-    bar::Bar, 
-    block::Block, 
+    ball::*,
+    bar::Bar,
+    block::Block,
 };
 use crate::resource::rule::Rule;
 use amethyst::core::num::abs;
@@ -39,7 +39,7 @@ impl<'a> System<'a> for CollisionSystem {
             if ball_transform.translation().y + ball.radius * 0.5 >= 600.0 {
                 ball.reverse_speed_y();
             }
-            
+
             // バーの当たり判定
             for (bar_transform, bar) in (&transforms, &bars).join() {
                 // バーの上部の辺の当たり判定だけチェックする
@@ -55,7 +55,7 @@ impl<'a> System<'a> for CollisionSystem {
                     ball.set_speed_x(BALL_BASE_SPEED_X * x_reflect_value);
                 }
             }
-            
+
             // ブロックの当たり判定
             for (block_transform, block, entity) in (&transforms, &blocks, &*entities).join() {
                 let ball_position = Vector2::new(ball_transform.translation().x, ball_transform.translation().y);
